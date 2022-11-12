@@ -26,4 +26,10 @@ public class CourseController {
         return courseRepository.save(course );
     }
 
+    @GetMapping(value = "/{id}")
+    public Course getCourse(@PathVariable Long id){
+       return courseRepository.findById(id).get();
+
+    }
+
 }
