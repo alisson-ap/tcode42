@@ -4,6 +4,7 @@ import com.magalhaes.Tcoder42.model.Course;
 import com.magalhaes.Tcoder42.repository.CourseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,8 +28,8 @@ public class CourseController {
     }
 
     @GetMapping(value = "/{id}")
-    public Course getCourse(@PathVariable Long id){
-       return courseRepository.findById(id).get();
+    public ResponseEntity<Course> getCourse(@PathVariable Long id){
+       return courseRepository.findById(id).map(record -> ResponseEntity.ok().body(record)).orElse(ResponseEntity.notFound().build());
 
     }
 
