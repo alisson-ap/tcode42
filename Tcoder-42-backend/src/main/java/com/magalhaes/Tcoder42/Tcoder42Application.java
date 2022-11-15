@@ -20,7 +20,7 @@ public class Tcoder42Application {
 
 			Course c = new Course();
 			c.setName("Angular e spring");
-			c.setCategory("Front-end");
+			c.setCategory("front-end");
 
 			courseRepository.save(c);
 		};
