@@ -32,5 +32,12 @@ public class CourseController {
        return courseRepository.findById(id).map(record -> ResponseEntity.ok().body(record)).orElse(ResponseEntity.notFound().build());
 
     }
+    @PutMapping(value = "/{id}")
+    public void editById(@RequestBody Course course, @PathVariable Long id){
+        Course obj = courseRepository.findById(id).get();
+        obj.setName(course.getName());
+        obj.setCategory(course.getCategory());
+        courseRepository.saveAndFlush(obj);
+    }
 
 }
